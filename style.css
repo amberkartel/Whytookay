@@ -1,0 +1,91 @@
+/* Fonts + Reset */
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: white;
+  color: #111;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+h1, h2 {
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Header */
+header {
+  padding: 50px 20px;
+}
+
+.logo {
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Sections */
+section {
+  padding: 40px 20px;
+}
+
+.tickets p {
+  font-size: 1.3rem;
+}
+
+.buy-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  margin-top: 20px;
+  background: linear-gradient(145deg, #00eaff, #ff00d9, #ffcc00);
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.buy-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+  padding: 30px;
+  background: #f9f9f9;
+  font-size: 0.9rem;
+}
+
+/* Floating 3D elements */
+.floating {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  z-index: -1;
+  animation: float 6s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.phone { background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/48/Motorola_RAZR_V3.jpg'); top: 20%; left: 5%; }
+.cd { background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/23/CD_autolev_crop.jpg'); top: 50%; right: 10%; }
+.star { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d4/Star_icon-72a7cf.svg'); top: 70%; left: 40%; }
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
