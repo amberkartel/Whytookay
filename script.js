@@ -3,8 +3,8 @@ const payButton = document.getElementById('payButton');
 
 payButton.addEventListener('click', () => {
   let handler = PaystackPop.setup({
-    key: 'pk_live_b74b2d92842a32feda36c2d4cd98dc50d2944c12', // live public key
-    email: 'customer@email.com', // optionally dynamic
+    key: 'pk_live_b74b2d92842a32feda36c2d4cd98dc50d2944c12',
+    email: 'customer@email.com',
     amount: 1000000, // ₦10,000 in kobo
     currency: 'NGN',
     ref: '' + Math.floor((Math.random() * 1000000000) + 1),
@@ -18,21 +18,29 @@ payButton.addEventListener('click', () => {
   handler.openIframe();
 });
 
-// ------------------- 3D Scroll + Mouse Floating -------------------
+// ------------------- Floating + 3D Scroll & Mouse -------------------
 const floats = document.querySelectorAll('.float');
+
+// Save initial float positions
+const floatOffsets = [];
+floats.forEach((el) => {
+  const style = window.getComputedStyle(el);
+  const matrix = new WebKitCSSMatrix(style.transform);
+  floatOffsets.push({x: matrix.m41, y: matrix.m42, z: 0});
+});
 
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   floats.forEach((el, i) => {
-    const speed = (i + 1) * 0.15;       // subtle scroll movement
+    const speed = (i + 1) * 0.15; // subtle scroll
     const rotateMultiplier = (i + 1) * 0.5; // gentle rotation
-    el.style.transform += ` translateY(${scrollY * speed}px) rotateY(${scrollY * rotateMultiplier}deg) rotateX(${scrollY * rotateMultiplier/2}deg)`;
+    el.style.transform = `translateY(calc(${floatOffsets[i].y}px + ${scrollY * speed}px)) rotateY(${scrollY * rotateMultiplier}deg) rotateX(${scrollY * rotateMultiplier/2}deg)`;
   });
 });
 
-// Gentle mouse reaction
+// Gentle mouse interaction without breaking float
 document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX - window.innerWidth / 2) / 150; // subtle movement
+  const x = (e.clientX - window.innerWidth / 2) / 150;
   const y = (e.clientY - window.innerHeight / 2) / 150;
   floats.forEach((el, i) => {
     el.style.transform += ` translateX(${x*(i+1)}px) translateY(${y*(i+1)}px)`;
