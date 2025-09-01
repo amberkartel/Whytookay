@@ -1,15 +1,15 @@
-/* General styles */
+/* ------------------- General Styles ------------------- */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: #222;
-  background: url("images/hologram1.png") repeat;
-  background-size: auto;
   text-align: center;
   overflow-x: hidden;
+  background: url("hologram1.png") repeat; /* Y2K pattern background */
+  background-size: auto;
 }
 
-/* Header */
+/* ------------------- Header ------------------- */
 header {
   padding: 40px 20px;
 }
@@ -27,13 +27,13 @@ h1 {
   margin-top: 10px;
 }
 
-/* Event details */
+/* ------------------- Event Details ------------------- */
 .event-details {
   margin: 40px 0;
   font-size: 1.1rem;
 }
 
-/* Ticket section */
+/* ------------------- Ticket Section ------------------- */
 .ticket-section {
   margin: 50px 0;
 }
@@ -49,26 +49,28 @@ h1 {
   font-weight: bold;
 }
 
-/* Floating objects */
+/* ------------------- Floating Objects ------------------- */
 .float {
   position: absolute;
   width: 100px;
   animation: floaty 6s ease-in-out infinite;
   z-index: -1;
+  pointer-events: none; /* prevents clicks from blocking */
 }
 
+/* Specific floating elements positions */
 .phone { top: 20%; left: 10%; }
 .cd { top: 50%; right: 15%; width: 100px; }
 .star { bottom: 20%; left: 20%; width: 60px; }
-.sticker { bottom: 10%; right: 10%; width: 80px; }
 
+/* ------------------- Float Animation ------------------- */
 @keyframes floaty {
   0% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(10deg); }
   100% { transform: translateY(0) rotate(0deg); }
 }
 
-/* Links */
+/* ------------------- Links ------------------- */
 a {
   color: #ff66ff;
   text-decoration: none;
