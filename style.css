@@ -1,106 +1,79 @@
-/* Reset + Fonts */
+/* General styles */
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  color: #111;
-  overflow-x: hidden;
-  text-align: center;
-  /* Light holographic Y2K gradient background */
-  background: linear-gradient(120deg, #fdfdfd, #f0f8ff, #fffaf0);
-  background-size: 600% 600%;
-  animation: bgShift 20s ease infinite;
-}
-
-/* Headings */
-h1 {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 3rem;
+  font-family: Arial, sans-serif;
   color: #222;
-  text-shadow: 0 0 10px #00f0ff, 0 0 20px #ff00ff;
-}
-
-h2 {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
+  background: url("images/hologram1.png") repeat;
+  background-size: auto;
+  text-align: center;
+  overflow-x: hidden;
 }
 
 /* Header */
 header {
-  padding: 60px 20px;
-}
-
-/* Sections */
-section {
   padding: 40px 20px;
-  margin: 20px auto;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(6px);
 }
 
-/* Ticket buttons */
-.buy-btn, .info-btn {
-  display: inline-block;
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  background: linear-gradient(90deg, #ff66ff, #66ccff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Event details */
+.event-details {
+  margin: 40px 0;
+  font-size: 1.1rem;
+}
+
+/* Ticket section */
+.ticket-section {
+  margin: 50px 0;
+}
+
+#payButton {
   padding: 15px 30px;
-  margin: 10px;
-  font-weight: bold;
-  border-radius: 30px;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.buy-btn {
-  background: linear-gradient(145deg, #00eaff, #ff00d9, #ffcc00);
-  color: white;
+  font-size: 1rem;
+  background: linear-gradient(45deg, #ff66ff, #66ccff);
   border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
 }
 
-.info-btn {
-  background: #fff;
-  color: #00eaff;
-  border: 2px solid #00eaff;
-}
-
-.buy-btn:hover, .info-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-}
-
-/* Footer */
-footer {
-  padding: 30px;
-  font-size: 0.9rem;
-  color: #222;
-}
-
-/* Floating 3D objects */
-.floating {
+/* Floating objects */
+.float {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  background-size: cover;
+  width: 100px;
+  animation: floaty 6s ease-in-out infinite;
   z-index: -1;
-  opacity: 0.85;
-  transition: transform 0.2s ease-out;
 }
 
-.phone { background-image: url('images/flipphone.png'); top: 10%; left: 5%; }
-.cd { background-image: url('images/cd.png'); top: 40%; right: 10%; }
-.star { background-image: url('images/star.png'); top: 70%; left: 40%; }
-.hologram1 { background-image: url('images/hologram1.png'); top: 20%; right: 30%; width: 100px; height: 100px;}
-.hologram2 { background-image: url('images/hologram2.png'); top: 60%; left: 60%; width: 100px; height: 100px;}
+.phone { top: 20%; left: 10%; }
+.cd { top: 50%; right: 15%; width: 100px; }
+.star { bottom: 20%; left: 20%; width: 60px; }
+.sticker { bottom: 10%; right: 10%; width: 80px; }
 
-/* Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-25px); }
+@keyframes floaty {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
-@keyframes bgShift {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
+/* Links */
+a {
+  color: #ff66ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
