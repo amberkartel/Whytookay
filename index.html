@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Y2K Throwback Party</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y2K Fest Sagamu</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>✨ Y2K Throwback Party ✨</h1>
-    <p class="tagline">Go back to the early 2000s & party like it’s 2001 🎉</p>
-  </header>
 
-  <section class="event-details">
-    <h2>Event Details</h2>
-    <p><strong>Date:</strong> 18th December</p>
-    <p><strong>Location:</strong> Rita Park, Sagamu</p>
-    <p><strong>Time:</strong> 5pm - 9pm</p>
-    <p><strong>After Party:</strong> Club Utopia, Sagamu (10pm - 1am)</p>
-    <p><strong>Ticket:</strong> ₦10,000 | No VIP</p>
-  </section>
+<header>
+  <h1>Y2K Fest Sagamu</h1>
+  <p class="tagline">Back to the early 2000s to party!</p>
+</header>
 
-  <!-- Floating Y2K objects -->
-  <img src="flipphone.PNG" alt="Flipphone" class="float phone">
-  <img src="cd.PNG" alt="CD" class="float cd">
-  <img src="star.PNG" alt="Star" class="float star">
+<section class="event-details">
+  <p><strong>Date:</strong> 18th December</p>
+  <p><strong>Location:</strong> Rita Park, Sagamu</p>
+  <p><strong>Time:</strong> 5pm - 9pm</p>
+  <p><strong>After Party:</strong> Club Utopia, 10pm - 1am</p>
+  <p><strong>Ticket:</strong> ₦10,000</p>
+</section>
 
-  <section class="ticket-section">
-    <h2>Grab Your Ticket 🎟️</h2>
-    <button id="payButton">Buy Ticket – ₦10,000</button>
-    <p class="info">💬 For more info, chat with us on <a href="https://wa.me/2348160216444" target="_blank">WhatsApp</a>.</p>
-  </section>
+<section class="ticket-section">
+  <button id="payButton">Buy Ticket</button>
+</section>
 
-  <script src="https://js.paystack.co/v1/inline.js"></script>
-  <script src="script.js"></script>
+<!-- Floating Images -->
+<img src="images/hologram1.PNG" class="float front" alt="float1">
+<img src="images/hologram1.PNG" class="float back" alt="float2">
+<img src="images/hologram1.PNG" class="float front" alt="float3">
+<img src="images/hologram1.PNG" class="float back" alt="float4">
+<img src="images/hologram1.PNG" class="float front" alt="float5">
+
+<!-- Mini Game Canvas -->
+<section id="game-section">
+  <canvas id="dinoGame" width="800" height="200"></canvas>
+</section>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
