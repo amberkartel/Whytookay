@@ -1,4 +1,4 @@
-// Simple parallax scroll for floating 3D elements
+// Parallax scroll for floating elements
 document.addEventListener("scroll", () => {
   let scrollY = window.scrollY;
   document.querySelectorAll(".floating").forEach((el, index) => {
