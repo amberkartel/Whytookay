@@ -4,11 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Y2K Fest – Sagamu</title>
+
+<!-- Google Fonts for readable Y2K vibe -->
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Floating 3D elements placeholders -->
+<!-- Floating 3D elements -->
 <div class="floating phone"></div>
 <div class="floating cd"></div>
 <div class="floating star"></div>
@@ -55,7 +59,7 @@
   payButton.addEventListener('click', function () {
     let handler = PaystackPop.setup({
       key: 'YOUR_PUBLIC_KEY', // Replace with your Paystack public key
-      email: 'customer@example.com', // Can collect dynamically
+      email: 'customer@example.com', // Collect dynamically if needed
       amount: 10000 * 100, // in kobo
       currency: "NGN",
       callback: function(response){
