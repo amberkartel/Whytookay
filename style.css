@@ -5,7 +5,7 @@ body {
   color: #222;
   text-align: center;
   overflow-x: hidden;
-  background: url("./hologram1.png") repeat; /* Y2K pattern background */
+  background: url("./hologram1.PNG") repeat; /* Y2K pattern background */
   background-size: auto;
 }
 
