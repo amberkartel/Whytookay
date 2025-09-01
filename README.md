@@ -1,2 +1,0 @@
-# Whytookay
-Private
