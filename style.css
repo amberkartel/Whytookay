@@ -9,7 +9,6 @@ body {
   overflow-x: hidden;
   position: relative;
 
-  /* Lifted, holographic text effect */
   text-shadow: 0 2px 4px rgba(255,255,255,0.6),
                0 4px 10px rgba(102,204,255,0.3),
                0 0 10px rgba(255,102,255,0.4);
@@ -23,7 +22,7 @@ body::before {
   background-image: url('hologram1.PNG');
   background-repeat: repeat;
   background-size: 75%;
-  opacity: 0.15;              /* subtle */
+  opacity: 0.15; 
   z-index: -1;
   pointer-events: none;
   animation: shimmer 6s linear infinite;
@@ -93,21 +92,20 @@ h1:hover {
               0 10px 30px rgba(102,204,255,0.5);
 }
 
-/* ------------------- Floating Objects (3D + Scroll + Float) ------------------- */
+/* ------------------- Floating Objects (Float + 3D) ------------------- */
 .float {
   position: absolute;
   width: 100px;
   transform-style: preserve-3d;
   pointer-events: none;
-  z-index: 2;
-  animation: floaty 6s ease-in-out infinite; /* smooth float */
+  z-index: 1; /* behind main content */
+  animation: floaty 6s ease-in-out infinite; /* smooth floating */
 }
 
-/* Smooth up-down float */
 @keyframes floaty {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(5deg); }
-  100% { transform: translateY(0) rotate(0deg); }
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
 }
 
 .phone { top: 20%; left: 10%; }
