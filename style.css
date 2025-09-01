@@ -1,12 +1,24 @@
 /* ------------------- General Styles ------------------- */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   color: #222;
   text-align: center;
   overflow-x: hidden;
-  background: url("./hologram1.PNG") repeat; /* Y2K pattern background */
+
+  /* Patternized Y2K background */
+  background-image: url("hologram1.PNG");
+  background-repeat: repeat; /* tile it */
   background-size: auto;
+  background-position: top left;
+
+  /* Lift effect for body text */
+  text-shadow: 
+    0 1px 0 #fff,
+    0 2px 0 #eee,
+    0 3px 0 #ddd,
+    0 4px 0 #ccc,
+    0 5px 5px rgba(0,0,0,0.1);
 }
 
 /* ------------------- Header ------------------- */
@@ -20,6 +32,12 @@ h1 {
   background: linear-gradient(90deg, #ff66ff, #66ccff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* adds depth */
+  transition: transform 0.2s ease;
+}
+
+h1:hover {
+  transform: translateY(-3px);
 }
 
 .tagline {
@@ -47,6 +65,12 @@ h1 {
   cursor: pointer;
   color: white;
   font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#payButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 /* ------------------- Floating Objects ------------------- */
@@ -58,12 +82,11 @@ h1 {
   pointer-events: none; /* prevents clicks from blocking */
 }
 
-/* Specific floating elements positions */
 .phone { top: 20%; left: 10%; }
 .cd { top: 50%; right: 15%; width: 100px; }
 .star { bottom: 20%; left: 20%; width: 60px; }
 
-/* ------------------- Float Animation ------------------- */
+/* Float animation */
 @keyframes floaty {
   0% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(10deg); }
