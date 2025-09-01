@@ -85,7 +85,7 @@ footer {
   animation: float 6s ease-in-out infinite;
   opacity: 0.8;
 }
-.phone { background-image: url('images/flip-phone.png'); top: 20%; left: 5%; }
+.phone { background-image: url('images/flipphone.png'); top: 20%; left: 5%; }
 .cd { background-image: url('images/cd.png'); top: 50%; right: 10%; }
 .star { background-image: url('images/star.png'); top: 70%; left: 40%; }
 
