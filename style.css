@@ -6,19 +6,31 @@ body {
   text-align: center;
   overflow-x: hidden;
 
-  /* Patternized Y2K background */
-  background-image: url("hologram1.PNG");
-  background-repeat: repeat;       /* tile it horizontally & vertically */
-  background-size: 150px 150px;   /* shrink image to repeat like a pattern */
-  background-position: top left;
-
-  /* Lift effect for body text */
+  /* Lifted font effect */
   text-shadow: 
     0 1px 0 #fff,
     0 2px 0 #eee,
     0 3px 0 #ddd,
     0 4px 0 #ccc,
     0 5px 5px rgba(0,0,0,0.1);
+
+  position: relative; /* needed for pseudo-element */
+}
+
+/* Pattern overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("hologram1.PNG");
+  background-repeat: repeat;
+  background-size: 75%; /* makes the pattern larger, reduce tiling a bit */
+  opacity: 0.25;       /* 25% opacity */
+  z-index: -1;         /* behind all content */
+  pointer-events: none; /* allow clicks through */
 }
 
 /* ------------------- Header ------------------- */
