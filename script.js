@@ -18,11 +18,11 @@ payButton.addEventListener('click', () => {
   handler.openIframe();
 });
 
-// ------------------- Floating + 3D Scroll & Mouse -------------------
+// ------------------- Floating + 3D -------------------
 const floats = document.querySelectorAll('.float');
+const floatOffsets = [];
 
 // Store initial positions
-const floatOffsets = [];
 floats.forEach((el) => {
   const rect = el.getBoundingClientRect();
   floatOffsets.push({x: rect.left, y: rect.top});
@@ -31,19 +31,16 @@ floats.forEach((el) => {
 let floatStep = 0;
 
 function animateFloats() {
-  floatStep += 0.02; // controls smooth float
-  const scrollY = window.scrollY;
+  floatStep += 0.02; // controls float speed
 
   floats.forEach((el, i) => {
     const floatY = Math.sin(floatStep + i) * 10; // smooth floating
-    const speed = (i + 1) * 0.15;               // scroll effect
-    const rotateMultiplier = (i + 1) * 0.5;    // 3D rotation
+    const rotateMultiplier = (i + 1) * 0.5;      // subtle 3D rotation
 
     el.style.transform = `
-      translateX(0px)
-      translateY(${floatOffsets[i].y + scrollY * speed + floatY}px)
-      rotateY(${scrollY * rotateMultiplier}deg)
-      rotateX(${scrollY * rotateMultiplier / 2}deg)
+      translateY(${floatOffsets[i].y + floatY}px)
+      rotateY(${floatStep * rotateMultiplier}deg)
+      rotateX(${floatStep * rotateMultiplier / 2}deg)
     `;
   });
 
@@ -52,12 +49,12 @@ function animateFloats() {
 
 animateFloats();
 
-// Gentle mouse reaction without breaking float
+// Gentle mouse interaction
 document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX - window.innerWidth / 2) / 200; // subtle
+  const x = (e.clientX - window.innerWidth / 2) / 200;
   const y = (e.clientY - window.innerHeight / 2) / 200;
 
   floats.forEach((el, i) => {
-    el.style.transform += ` translateX(${x*(i+1)}px) translateY(${y*(i+1)}px)`;
+    el.style.transform += ` translateX(${x * (i + 1)}px) translateY(${y * (i + 1)}px)`;
   });
 });
