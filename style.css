@@ -23,7 +23,7 @@ body::before {
   background-repeat: repeat;
   background-size: 75%;
   opacity: 0.15; 
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
   animation: shimmer 6s linear infinite;
 }
@@ -98,14 +98,7 @@ h1:hover {
   width: 100px;
   transform-style: preserve-3d;
   pointer-events: none;
-  z-index: 1; /* behind main content */
-  animation: floaty 6s ease-in-out infinite; /* smooth floating */
-}
-
-@keyframes floaty {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0); }
+  z-index: -1; /* behind main content */
 }
 
 .phone { top: 20%; left: 10%; }
