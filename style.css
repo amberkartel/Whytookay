@@ -1,47 +1,45 @@
-/* Fonts + Reset */
+/* Reset + fonts */
 body {
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: white url('images/y2k-pattern.png') repeat; /* replace with your pattern */
-  background-size: 200px 200px;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #111;
   overflow-x: hidden;
   text-align: center;
-  color: #111;
+  background: linear-gradient(120deg, #ff00ff, #00ffff, #ffcc00);
+  background-size: 600% 600%;
+  animation: gradientShift 15s ease infinite;
 }
 
-h1, h2 {
-  font-family: 'Press Start 2P', cursive;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+/* Headings */
+h1 {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 3rem;
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
 }
 
 /* Header */
 header {
-  padding: 50px 20px;
-}
-
-.logo {
-  font-size: 2.5rem;
-  background: linear-gradient(90deg, #ff00ff, #00ffff, #ffcc00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s infinite linear;
-}
-
-.tagline {
-  font-size: 1.2rem;
-  color: #666;
+  padding: 60px 20px;
 }
 
 /* Sections */
 section {
   padding: 40px 20px;
+  backdrop-filter: blur(4px);
+  margin: 20px;
+  border-radius: 20px;
 }
 
-.tickets p {
-  font-size: 1.3rem;
-}
-
+/* Ticket buttons */
 .buy-btn, .info-btn {
   display: inline-block;
   padding: 15px 30px;
@@ -92,12 +90,13 @@ footer {
 .star { background-image: url('images/star.png'); top: 70%; left: 40%; }
 
 /* Animations */
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
+}
+
+@keyframes gradientShift {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
 }
