@@ -8,8 +8,8 @@ body {
 
   /* Patternized Y2K background */
   background-image: url("hologram1.PNG");
-  background-repeat: repeat; /* tile it */
-  background-size: auto;
+  background-repeat: repeat;       /* tile it horizontally & vertically */
+  background-size: 150px 150px;   /* shrink image to repeat like a pattern */
   background-position: top left;
 
   /* Lift effect for body text */
