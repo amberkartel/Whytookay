@@ -2,10 +2,11 @@
 body {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
-  background: white;
-  color: #111;
+  background: white url('images/y2k-pattern.png') repeat; /* replace with your pattern */
+  background-size: 200px 200px;
   overflow-x: hidden;
   text-align: center;
+  color: #111;
 }
 
 h1, h2 {
@@ -41,20 +42,31 @@ section {
   font-size: 1.3rem;
 }
 
-.buy-btn {
+.buy-btn, .info-btn {
   display: inline-block;
   padding: 15px 30px;
-  margin-top: 20px;
-  background: linear-gradient(145deg, #00eaff, #ff00d9, #ffcc00);
-  color: white;
+  margin: 10px;
   font-weight: bold;
   border-radius: 30px;
   text-decoration: none;
+  cursor: pointer;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   transition: transform 0.2s ease;
 }
 
-.buy-btn:hover {
+.buy-btn {
+  background: linear-gradient(145deg, #00eaff, #ff00d9, #ffcc00);
+  color: white;
+  border: none;
+}
+
+.info-btn {
+  background: #fff;
+  color: #00eaff;
+  border: 2px solid #00eaff;
+}
+
+.buy-btn:hover, .info-btn:hover {
   transform: scale(1.1);
 }
 
@@ -75,11 +87,11 @@ footer {
   animation: float 6s ease-in-out infinite;
   opacity: 0.8;
 }
+.phone { background-image: url('images/flip-phone.png'); top: 20%; left: 5%; }
+.cd { background-image: url('images/cd.png'); top: 50%; right: 10%; }
+.star { background-image: url('images/star.png'); top: 70%; left: 40%; }
 
-.phone { background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/48/Motorola_RAZR_V3.jpg'); top: 20%; left: 5%; }
-.cd { background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/23/CD_autolev_crop.jpg'); top: 50%; right: 10%; }
-.star { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d4/Star_icon-72a7cf.svg'); top: 70%; left: 40%; }
-
+/* Animations */
 @keyframes shimmer {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
