@@ -21,27 +21,42 @@ payButton.addEventListener('click', () => {
 // ------------------- Floating + 3D Scroll & Mouse -------------------
 const floats = document.querySelectorAll('.float');
 
-// Save initial float positions
+// Store initial positions
 const floatOffsets = [];
 floats.forEach((el) => {
-  const style = window.getComputedStyle(el);
-  const matrix = new WebKitCSSMatrix(style.transform);
-  floatOffsets.push({x: matrix.m41, y: matrix.m42, z: 0});
+  const rect = el.getBoundingClientRect();
+  floatOffsets.push({x: rect.left, y: rect.top});
 });
 
-window.addEventListener('scroll', () => {
+let floatStep = 0;
+
+function animateFloats() {
+  floatStep += 0.02; // controls smooth float
   const scrollY = window.scrollY;
-  floats.forEach((el, i) => {
-    const speed = (i + 1) * 0.15; // subtle scroll
-    const rotateMultiplier = (i + 1) * 0.5; // gentle rotation
-    el.style.transform = `translateY(calc(${floatOffsets[i].y}px + ${scrollY * speed}px)) rotateY(${scrollY * rotateMultiplier}deg) rotateX(${scrollY * rotateMultiplier/2}deg)`;
-  });
-});
 
-// Gentle mouse interaction without breaking float
+  floats.forEach((el, i) => {
+    const floatY = Math.sin(floatStep + i) * 10; // smooth floating
+    const speed = (i + 1) * 0.15;               // scroll effect
+    const rotateMultiplier = (i + 1) * 0.5;    // 3D rotation
+
+    el.style.transform = `
+      translateX(0px)
+      translateY(${floatOffsets[i].y + scrollY * speed + floatY}px)
+      rotateY(${scrollY * rotateMultiplier}deg)
+      rotateX(${scrollY * rotateMultiplier / 2}deg)
+    `;
+  });
+
+  requestAnimationFrame(animateFloats);
+}
+
+animateFloats();
+
+// Gentle mouse reaction without breaking float
 document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX - window.innerWidth / 2) / 150;
-  const y = (e.clientY - window.innerHeight / 2) / 150;
+  const x = (e.clientX - window.innerWidth / 2) / 200; // subtle
+  const y = (e.clientY - window.innerHeight / 2) / 200;
+
   floats.forEach((el, i) => {
     el.style.transform += ` translateX(${x*(i+1)}px) translateY(${y*(i+1)}px)`;
   });
