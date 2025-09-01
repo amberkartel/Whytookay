@@ -1,23 +1,22 @@
-/* Reset + fonts */
+/* Reset + Fonts */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #fff;
   color: #111;
   overflow-x: hidden;
   text-align: center;
-  background: linear-gradient(120deg, #ff00ff, #00ffff, #ffcc00);
+  /* Light holographic Y2K gradient background */
+  background: linear-gradient(120deg, #fdfdfd, #f0f8ff, #fffaf0);
   background-size: 600% 600%;
-  animation: gradientShift 15s ease infinite;
+  animation: bgShift 20s ease infinite;
 }
 
 /* Headings */
 h1 {
-  font-family: 'Audiowide', sans-serif;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 3rem;
-  background: linear-gradient(90deg, #ff00ff, #00ffff, #ffcc00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #222;
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #ff00ff;
 }
 
 h2 {
@@ -34,9 +33,10 @@ header {
 /* Sections */
 section {
   padding: 40px 20px;
-  backdrop-filter: blur(4px);
-  margin: 20px;
+  margin: 20px auto;
   border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
 }
 
 /* Ticket buttons */
@@ -49,7 +49,7 @@ section {
   text-decoration: none;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .buy-btn {
@@ -66,36 +66,40 @@ section {
 
 .buy-btn:hover, .info-btn:hover {
   transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
 }
 
 /* Footer */
 footer {
   padding: 30px;
-  background: #f9f9f9;
   font-size: 0.9rem;
+  color: #222;
 }
 
-/* Floating 3D elements */
+/* Floating 3D objects */
 .floating {
   position: absolute;
   width: 80px;
   height: 80px;
   background-size: cover;
   z-index: -1;
-  animation: float 6s ease-in-out infinite;
-  opacity: 0.8;
+  opacity: 0.85;
+  transition: transform 0.2s ease-out;
 }
-.phone { background-image: url('images/flipphone.png'); top: 20%; left: 5%; }
-.cd { background-image: url('images/cd.png'); top: 50%; right: 10%; }
+
+.phone { background-image: url('images/flipphone.png'); top: 10%; left: 5%; }
+.cd { background-image: url('images/cd.png'); top: 40%; right: 10%; }
 .star { background-image: url('images/star.png'); top: 70%; left: 40%; }
+.hologram1 { background-image: url('images/hologram1.png'); top: 20%; right: 30%; width: 100px; height: 100px;}
+.hologram2 { background-image: url('images/hologram2.png'); top: 60%; left: 60%; width: 100px; height: 100px;}
 
 /* Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-25px); }
 }
 
-@keyframes gradientShift {
+@keyframes bgShift {
   0% {background-position:0% 50%;}
   50% {background-position:100% 50%;}
   100% {background-position:0% 50%;}
