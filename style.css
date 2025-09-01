@@ -1,4 +1,6 @@
-/* ------------------- Body & Fonts ------------------- */
+/* ------------------- Fonts & Body ------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
 body {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
@@ -7,20 +9,21 @@ body {
   overflow-x: hidden;
   position: relative;
 
+  /* Lifted, holographic text effect */
   text-shadow: 0 2px 4px rgba(255,255,255,0.6),
                0 4px 10px rgba(102,204,255,0.3),
                0 0 10px rgba(255,102,255,0.4);
 }
 
-/* ------------------- Patterned Background ------------------- */
+/* ------------------- Patterned Background (Subtle) ------------------- */
 body::before {
   content: "";
   position: fixed;
   top:0; left:0; width:100%; height:100%;
   background-image: url('hologram1.PNG');
   background-repeat: repeat;
-  background-size: 75%; /* slightly larger tiles */
-  opacity: 0.25;       /* subtle */
+  background-size: 75%;       /* slightly larger tiles */
+  opacity: 0.15;              /* very subtle */
   z-index: -1;
   pointer-events: none;
   animation: shimmer 6s linear infinite;
@@ -64,7 +67,7 @@ h1:hover {
   font-size: 1.1rem;
 }
 
-/* ------------------- Ticket Button ------------------- */
+/* ------------------- Ticket Section ------------------- */
 .ticket-section {
   margin: 50px 0;
 }
@@ -90,12 +93,12 @@ h1:hover {
               0 10px 30px rgba(102,204,255,0.5);
 }
 
-/* ------------------- Floating Objects ------------------- */
+/* ------------------- Floating Objects (3D + Scroll) ------------------- */
 .float {
   position: absolute;
   width: 100px;
   transform-style: preserve-3d;
-  transition: transform 0.3s ease-out;
+  transition: transform 0.2s ease-out;
   pointer-events: none;
   z-index: 2;
 }
