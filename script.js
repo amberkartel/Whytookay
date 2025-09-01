@@ -1,4 +1,4 @@
-// ------------------- Paystack -------------------
+// ------------------- Paystack Payment -------------------
 const payButton = document.getElementById('payButton');
 
 payButton.addEventListener('click', () => {
@@ -20,8 +20,9 @@ payButton.addEventListener('click', () => {
 
 // ------------------- Floating + 3D Scroll & Mouse -------------------
 const floats = document.querySelectorAll('.float');
-const floatOffsets = [];
 
+// Store initial positions
+const floatOffsets = [];
 floats.forEach((el) => {
   const rect = el.getBoundingClientRect();
   floatOffsets.push({x: rect.left, y: rect.top});
@@ -30,18 +31,19 @@ floats.forEach((el) => {
 let floatStep = 0;
 
 function animateFloats() {
-  floatStep += 0.02;
+  floatStep += 0.02; // controls smooth float
+  const scrollY = window.scrollY;
 
   floats.forEach((el, i) => {
-    const floatY = Math.sin(floatStep + i) * 10;
-    const scrollY = window.scrollY;
-    const speed = (i + 1) * 0.15;
-    const rotateMultiplier = (i + 1) * 0.5;
+    const floatY = Math.sin(floatStep + i) * 10; // smooth floating
+    const speed = (i + 1) * 0.15;               // scroll effect
+    const rotateMultiplier = (i + 1) * 0.5;    // 3D rotation
 
     el.style.transform = `
-      translateY(${floatOffsets[i].y + scrollY*speed + floatY}px)
-      rotateY(${scrollY*rotateMultiplier}deg)
-      rotateX(${scrollY*rotateMultiplier/2}deg)
+      translateX(0px)
+      translateY(${floatOffsets[i].y + scrollY * speed + floatY}px)
+      rotateY(${scrollY * rotateMultiplier}deg)
+      rotateX(${scrollY * rotateMultiplier / 2}deg)
     `;
   });
 
@@ -50,10 +52,10 @@ function animateFloats() {
 
 animateFloats();
 
-// Gentle mouse reaction
+// Gentle mouse reaction without breaking float
 document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX - window.innerWidth/2)/200;
-  const y = (e.clientY - window.innerHeight/2)/200;
+  const x = (e.clientX - window.innerWidth / 2) / 200; // subtle
+  const y = (e.clientY - window.innerHeight / 2) / 200;
 
   floats.forEach((el, i) => {
     el.style.transform += ` translateX(${x*(i+1)}px) translateY(${y*(i+1)}px)`;
