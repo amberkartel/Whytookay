@@ -6,14 +6,13 @@ body {
   color: #111;
   text-align: center;
   overflow-x: hidden;
-  min-height: 100vh; /* ensures body fits viewport */
   text-shadow: 0 2px 4px rgba(255,255,255,0.6),
                0 4px 10px rgba(102,204,255,0.3),
                0 0 10px rgba(255,102,255,0.4);
-  background-color: #fdfdfd; /* near-white background */
+  background-color: #fdfdfd;
 }
 
-/* ------------------- Patterned Background ------------------- */
+/* Background Pattern */
 body::before {
   content: "";
   position: fixed;
@@ -26,45 +25,36 @@ body::before {
   pointer-events: none;
 }
 
-/* ------------------- Header ------------------- */
+/* Header */
 header {
-  padding: 20px 10px; /* smaller padding */
+  padding: 40px 20px;
 }
 
 h1 {
-  font-size: 2.2rem; /* smaller to reduce scroll */
+  font-size: 3rem;
   margin: 0;
   background: linear-gradient(90deg, #ff66ff, #66ccff, #ffcc66);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 10px rgba(255,102,255,0.5),
                0 0 20px rgba(102,204,255,0.5);
-  transition: transform 0.2s ease;
-}
-
-h1:hover {
-  transform: translateY(-3px);
 }
 
 .tagline {
-  font-size: 1.1rem;
-  margin-top: 5px;
+  font-size: 1.3rem;
+  margin-top: 10px;
 }
 
-/* ------------------- Event Details ------------------- */
+/* Event Details */
 .event-details {
-  margin: 20px 0; /* smaller vertical spacing */
-  font-size: 0.95rem; /* smaller text */
-}
-
-/* ------------------- Ticket Button ------------------- */
-.ticket-section {
   margin: 30px 0;
+  font-size: 1rem;
 }
 
+/* Ticket Button */
 #payButton {
-  padding: 12px 25px;
-  font-size: 1rem;
+  padding: 15px 30px;
+  font-size: 1.2rem;
   font-family: 'Orbitron', sans-serif;
   background: linear-gradient(45deg, #ff66ff, #66ccff, #ffcc66);
   border: none;
@@ -83,25 +73,15 @@ h1:hover {
               0 10px 30px rgba(102,204,255,0.5);
 }
 
-/* ------------------- Floating Elements ------------------- */
+/* Floating Images */
 .float {
   position: absolute;
-  width: 80px; /* slightly smaller */
+  width: 100px;
   transform-style: preserve-3d;
   pointer-events: none;
-  z-index: -1; /* behind main content */
+  z-index: -1;
 }
 
-.phone { top: 15%; left: 10%; width: 70px; }
-.cd { top: 50%; right: 15%; width: 60px; }
-.star { bottom: 20%; left: 20%; width: 50px; }
-
-/* ------------------- Links ------------------- */
-a {
-  color: #ff66ff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
+.phone { top: 20%; left: 10%; }
+.cd { top: 50%; right: 15%; width: 100px; }
+.star { bottom: 20%; left: 20%; width: 60px; }
