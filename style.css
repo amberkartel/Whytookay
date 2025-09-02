@@ -1,4 +1,3 @@
-/* ------------------- Fonts & Body ------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
 body {
@@ -7,11 +6,11 @@ body {
   color: #111;
   text-align: center;
   overflow-x: hidden;
-  position: relative;
-
+  min-height: 100vh; /* ensures body fits viewport */
   text-shadow: 0 2px 4px rgba(255,255,255,0.6),
                0 4px 10px rgba(102,204,255,0.3),
                0 0 10px rgba(255,102,255,0.4);
+  background-color: #fdfdfd; /* near-white background */
 }
 
 /* ------------------- Patterned Background ------------------- */
@@ -19,28 +18,21 @@ body::before {
   content: "";
   position: fixed;
   top:0; left:0; width:100%; height:100%;
-  background-image: url('hologram1.PNG');
+  background-image: url('images/hologram1.PNG');
   background-repeat: repeat;
   background-size: 75%;
-  opacity: 0.15; 
+  opacity: 0.15;
   z-index: -2;
   pointer-events: none;
-  animation: shimmer 6s linear infinite;
-}
-
-@keyframes shimmer {
-  0% {background-position: 0 0;}
-  50% {background-position: 100px 100px;}
-  100% {background-position: 0 0;}
 }
 
 /* ------------------- Header ------------------- */
 header {
-  padding: 40px 20px;
+  padding: 20px 10px; /* smaller padding */
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.2rem; /* smaller to reduce scroll */
   margin: 0;
   background: linear-gradient(90deg, #ff66ff, #66ccff, #ffcc66);
   -webkit-background-clip: text;
@@ -55,25 +47,24 @@ h1:hover {
 }
 
 .tagline {
-  font-size: 1.3rem;
-  margin-top: 10px;
-  color: #222;
+  font-size: 1.1rem;
+  margin-top: 5px;
 }
 
 /* ------------------- Event Details ------------------- */
 .event-details {
-  margin: 40px 0;
-  font-size: 1.1rem;
+  margin: 20px 0; /* smaller vertical spacing */
+  font-size: 0.95rem; /* smaller text */
 }
 
-/* ------------------- Ticket Section ------------------- */
+/* ------------------- Ticket Button ------------------- */
 .ticket-section {
-  margin: 50px 0;
+  margin: 30px 0;
 }
 
 #payButton {
-  padding: 15px 30px;
-  font-size: 1.2rem;
+  padding: 12px 25px;
+  font-size: 1rem;
   font-family: 'Orbitron', sans-serif;
   background: linear-gradient(45deg, #ff66ff, #66ccff, #ffcc66);
   border: none;
@@ -92,18 +83,18 @@ h1:hover {
               0 10px 30px rgba(102,204,255,0.5);
 }
 
-/* ------------------- Floating Objects (Float + 3D) ------------------- */
+/* ------------------- Floating Elements ------------------- */
 .float {
   position: absolute;
-  width: 100px;
+  width: 80px; /* slightly smaller */
   transform-style: preserve-3d;
   pointer-events: none;
   z-index: -1; /* behind main content */
 }
 
-.phone { top: 20%; left: 10%; }
-.cd { top: 50%; right: 15%; width: 100px; }
-.star { bottom: 20%; left: 20%; width: 60px; }
+.phone { top: 15%; left: 10%; width: 70px; }
+.cd { top: 50%; right: 15%; width: 60px; }
+.star { bottom: 20%; left: 20%; width: 50px; }
 
 /* ------------------- Links ------------------- */
 a {
