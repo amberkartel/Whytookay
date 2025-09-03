@@ -60,12 +60,29 @@ h1:hover {
   font-size: 1rem;
 }
 
-/* ------------------- Ticket Button ------------------- */
+/* ------------------- Ticket Section ------------------- */
 .ticket-section {
   margin: 30px 0;
 }
 
+.ticket-section input[type="email"] {
+  display: block;
+  width: 100%;
+  max-width: 300px; /* same width as button */
+  padding: 15px;
+  margin: 10px auto;
+  font-size: 1.2rem;
+  font-family: 'Orbitron', sans-serif;
+  border: 2px solid #333;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(102,204,255,0.2);
+}
+
 #payButton {
+  display: block;
+  width: 100%;
+  max-width: 300px;
   padding: 15px 30px;
   font-size: 1.2rem;
   font-family: 'Orbitron', sans-serif;
@@ -75,6 +92,7 @@ h1:hover {
   cursor: pointer;
   color: white;
   font-weight: bold;
+  margin: 10px auto;
   box-shadow: 0 0 15px rgba(255,102,255,0.5),
               0 5px 25px rgba(102,204,255,0.3);
   transition: transform 0.2s ease, box-shadow 0.3s ease;
@@ -96,8 +114,8 @@ h1:hover {
 }
 
 .phone { top: 20%; left: 10%; width: 70px; }
-.cd { top: 35%; right: 15%; width: 60px; } /* moved higher */
-.star { top: 25%; left: 70%; width: 50px; } /* placeholder until real star.png */
+.cd { top: 35%; right: 15%; width: 60px; }
+.star { top: 25%; left: 70%; width: 50px; }
 
 /* ------------------- Links ------------------- */
 a {
