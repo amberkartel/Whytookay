@@ -1,20 +1,33 @@
 // ------------------- Paystack Payment -------------------
 const payButton = document.getElementById('payButton');
+const emailInput = document.getElementById('email');
+const statusMsg = document.getElementById('statusMsg');
 
 payButton.addEventListener('click', () => {
+  const email = emailInput.value.trim();
+
+  if (!email) {
+    alert("Please enter your email before buying a ticket.");
+    return;
+  }
+
+  statusMsg.innerText = "⏳ Redirecting to Paystack...";
+
   let handler = PaystackPop.setup({
     key: 'pk_live_b74b2d92842a32feda36c2d4cd98dc50d2944c12',
-    email: 'customer@email.com',
-    amount: 1000000, // ₦10,000 in kobo
+    email: email,
+    amount: 10000 * 100, // ₦10,000 in kobo
     currency: 'NGN',
-    ref: '' + Math.floor((Math.random() * 1000000000) + 1),
-    callback: function(response){
-      alert('Payment successful! Reference: ' + response.reference);
+    ref: 'Y2K-' + Math.floor((Math.random() * 1000000000) + 1),
+    callback: function(response) {
+      statusMsg.innerText = "✅ Payment successful! Please check your email for your QR ticket.";
+      console.log('Payment successful! Reference:', response.reference);
     },
-    onClose: function(){
-      alert('Transaction was not completed.');
+    onClose: function() {
+      statusMsg.innerText = "⚠️ Transaction was not completed.";
     }
   });
+
   handler.openIframe();
 });
 
