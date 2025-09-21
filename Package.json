@@ -1,0 +1,29 @@
+{
+  "name": "y2k-fest",
+  "version": "1.0.0",
+  "description": "Y2K Fest ticketing system with Paystack, QR codes, Gmail, and Google Sheets",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "googleapis": "^105.0.0",
+    "jimp": "^0.22.10",
+    "nodemailer": "^6.9.0",
+    "qrcode": "^1.5.1"
+  },
+  "engines": {
+    "node": ">=16.x"
+  },
+  "keywords": [
+    "paystack",
+    "qr-code",
+    "ticketing",
+    "vercel",
+    "google-sheets",
+    "y2k"
+  ],
+  "author": "Y2K Fest Team",
+  "license": "MIT"
+}
