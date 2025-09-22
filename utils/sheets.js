@@ -8,7 +8,7 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({ version: "v4", auth });
 
 const SHEET_ID = process.env.SHEET_ID;
-const RANGE = "Tickets!A:D"; // [Email, TicketId, Reference, Status]
+const RANGE = "Sheet1!A:E"; // [Email, TicketId, Reference, Status]
 
 async function getNextTicketId() {
   const res = await sheets.spreadsheets.values.get({
