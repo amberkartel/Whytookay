@@ -1,105 +1,56 @@
-// api/sendTicket.js
-import QRCode from "qrcode";
-import Jimp from "jimp";
-import path from "path";
-import fs from "fs";
-import nodemailer from "nodemailer";
-import { appendRow, getAllRows } from "../utils/sheets.js";
+const nodemailer = require("nodemailer");
+const QRCode = require("qrcode");
+const Jimp = require("jimp");
+const { logTicket, getNextTicketId } = require("../utils/sheets");
 
-const LOGO_DEFAULT_PATH = path.join(process.cwd(), "public", "logo.png");
-
-function formatTicketId(number) {
-  return `Y2K-${String(number).padStart(5, "0")}`; // Y2K-00001 style
-}
-
-async function overlayLogoOnQR(qrBuffer) {
+module.exports = async function sendTicket(email, reference) {
   try {
+    // Generate ticket ID
+    const ticketId = await getNextTicketId();
+
+    // Generate QR code
+    const qrData = { ticketId, reference };
+    const qrBuffer = await QRCode.toBuffer(JSON.stringify(qrData));
+
+    // Load QR + Logo
     const qrImage = await Jimp.read(qrBuffer);
-    const logoPath = process.env.LOGO_PATH || LOGO_DEFAULT_PATH;
-    if (!fs.existsSync(logoPath)) {
-      return await qrImage.getBase64Async(Jimp.MIME_PNG);
-    }
-    const logo = await Jimp.read(logoPath);
-    const logoSize = Math.floor(qrImage.bitmap.width * 0.2);
-    logo.resize(logoSize, logoSize);
+    const logo = await Jimp.read(process.env.LOGO_PATH || "public/logo.png");
+    logo.resize(qrImage.bitmap.width / 4, Jimp.AUTO);
+
     const x = qrImage.bitmap.width / 2 - logo.bitmap.width / 2;
     const y = qrImage.bitmap.height / 2 - logo.bitmap.height / 2;
     qrImage.composite(logo, x, y);
-    return await qrImage.getBase64Async(Jimp.MIME_PNG);
-  } catch (err) {
-    console.error("QR overlay error:", err);
-    return null;
-  }
-}
 
-async function generateTicketAndQR(email, paystackRef) {
-  const rows = await getAllRows();
-  let lastNumber = 0;
-  for (let i = rows.length - 1; i >= 0; i--) {
-    const ticketId = rows[i][1];
-    if (ticketId && ticketId.startsWith("Y2K-")) {
-      const parts = ticketId.split("-");
-      const num = parseInt(parts[1], 10);
-      if (!isNaN(num)) {
-        lastNumber = Math.max(lastNumber, num);
-        break;
-      }
-    }
-  }
-  const nextNum = lastNumber + 1;
-  const ticketId = formatTicketId(nextNum);
+    const finalQR = await qrImage.getBufferAsync(Jimp.MIME_PNG);
 
-  const payload = JSON.stringify({ ticketId, email, ref: paystackRef });
-  const qrBuffer = await QRCode.toBuffer(payload, { width: 600, margin: 2 });
-
-  const finalQRDataUrl = await overlayLogoOnQR(qrBuffer);
-  return { ticketId, qrDataUrl: finalQRDataUrl };
-}
-
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
-  }
-
-  try {
-    const { email, ref } = req.body;
-    if (!email || !ref) {
-      return res.status(400).json({ error: "email and ref required" });
-    }
-
-    const { ticketId, qrDataUrl } = await generateTicketAndQR(email, ref);
-
+    // Email transport
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
+        pass: process.env.EMAIL_PASS
+      }
     });
-
-    const mailHtml = `
-      <div style="font-family: Arial, sans-serif; color:#111;">
-        <h2>🎟 Y2K Fest Ticket</h2>
-        <p>Hi — thanks for buying your ticket. Your Ticket ID is <strong>${ticketId}</strong></p>
-        <p>Show the QR code below at the gate:</p>
-        <img src="${qrDataUrl}" alt="QR Ticket" style="max-width: 300px;" />
-        <p style="font-size:0.9rem; color:#444">Event: 18th December — Rita Park, Sagamu</p>
-      </div>
-    `;
 
     await transporter.sendMail({
       from: `"Y2K Fest" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: `Your Y2K Fest Ticket — ${ticketId}`,
-      html: mailHtml,
+      subject: "🎟️ Your Y2K Fest Ticket",
+      text: `Here is your ticket ID: ${ticketId}. Show the QR code at entry.`,
+      attachments: [
+        {
+          filename: `${ticketId}.png`,
+          content: finalQR
+        }
+      ]
     });
 
-    const timestamp = new Date().toISOString();
-    await appendRow([email, ticketId, ref, "unused", timestamp]);
+    // Log to Google Sheets
+    await logTicket(email, ticketId, reference);
 
-    return res.json({ success: true, ticketId });
+    console.log(`Ticket sent to ${email}`);
   } catch (err) {
-    console.error("sendTicket error:", err);
-    return res.status(500).json({ error: "internal error" });
+    console.error("Send ticket error:", err);
+    throw err;
   }
-}
+};
