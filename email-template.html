@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y2kfest Sagamu - Congratulations!</title>
+    <!-- Y2K Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Press+Start+2P&family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px 20px 20px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://i.ibb.co/XZps2KcX/y2kfestcongratsemailpic.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        /* Darker overlay to darken the background image */
+        .email-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1); /* Full black overlay for max darkness */
+            z-index: 0;
+        }
+        
+        /* Text styles for content */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            padding-top: 40px;
+            text-align: center;
+        }
+        
+        /* Congratulations title styling */
+        .content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 25px;
+            color: #FFEB3B;
+            margin-top: 0;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Text shadow for extra pop */
+        }
+
+        /* Body text font change */
+        .content p {
+            font-family: 'Russo One', sans-serif; /* Changed font */
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Button styling */
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+        }
+
+        /* Footer styling */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #FFF;
+            background-color: #333;
+            padding: 15px 0;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        /* Button hover effect */
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Media queries for mobile responsiveness */
+        @media only screen and (max-width: 600px) {
+            .footer {
+                padding: 10px 0;
+            }
+
+            .email-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="content">
+            <h2>Congratulations! 🎉</h2>
+            <p>You're officially on the list! You've successfully secured your ticket for the highly anticipated <strong>Y2kfest Sagamu</strong> event! 🚀</p>
+            <p>Get ready for an unforgettable experience filled with music, fun, and nostalgia! We can’t wait to see you there!</p>
+            <p><strong>Venue Details:</strong><br> 
+               We are finalizing the details of the venue, and you will receive a follow-up email with all the information you need when it's ready. Stay tuned!</p>
+        </div>
+    </div>
+    
+    <!-- Footer section outside of the email-container -->
+    <div class="footer">
+        <p>For any inquiries, feel free to reach out to us at <a href="mailto:y2kfest@gmail.com">y2kfest@gmail.com</a>.</p>
+        <p>Follow us on social media for updates!</p>
+    </div>
+</body>
+</html>
