@@ -1,29 +1,58 @@
-const axios = require("axios");
-const sendTicket = require("./sendTicket");
+import crypto from "crypto";
 
-module.exports = async (req, res) => {
+// ✅ Verify Paystack payment and trigger email
+export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).send("Method Not Allowed");
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    const secret = process.env.PAYSTACK_SECRET;
-    const { reference } = req.body;
+    const secret = process.env.PAYSTACK_SECRET_KEY;
+    const hash = crypto
+      .createHmac("sha512", secret)
+      .update(JSON.stringify(req.body))
+      .digest("hex");
 
-    // Verify payment with Paystack
-    const verify = await axios.get(
-      `https://api.paystack.co/transaction/verify/${reference}`,
-      { headers: { Authorization: `Bearer ${secret}` } }
-    );
+    const signature = req.headers["x-paystack-signature"];
 
-    if (verify.data.status && verify.data.data.status === "success") {
-      await sendTicket(verify.data.data.customer.email, reference);
-      return res.status(200).send("Ticket sent successfully");
-    } else {
-      return res.status(400).send("Payment not verified");
+    // 🔒 Security check
+    if (hash !== signature) {
+      console.error("Invalid Paystack signature");
+      return res.status(400).json({ error: "Invalid signature" });
     }
-  } catch (err) {
-    console.error(err);
-    return res.status(500).send("Webhook error");
+
+    const event = req.body;
+
+    // ✅ Handle successful payment
+    if (event.event === "charge.success") {
+      const customer = event.data.customer;
+      const email = customer.email;
+      const name = customer.first_name || "Guest";
+
+      console.log(`✅ Payment success for ${email}`);
+
+      // Call the sendTicket API to send the confirmation email
+      try {
+        const response = await fetch(`${process.env.BASE_URL}/api/sendTicket`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, name }),
+        });
+
+        if (!response.ok) {
+          const err = await response.text();
+          console.error("❌ Failed to send email:", err);
+        } else {
+          console.log("🎉 Confirmation email sent successfully!");
+        }
+      } catch (err) {
+        console.error("Error triggering sendTicket API:", err);
+      }
+    }
+
+    res.status(200).json({ received: true });
+  } catch (error) {
+    console.error("Webhook error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-};
+}
