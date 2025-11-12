@@ -16,7 +16,7 @@ payButton.addEventListener('click', () => {
   let handler = PaystackPop.setup({
     key: 'pk_live_b74b2d92842a32feda36c2d4cd98dc50d2944c12',
     email: email,
-    amount: 10000 * 100, // ₦10,000 in kobo
+    amount: 7000 * 100, // ₦7,000 in kobo
     currency: 'NGN',
     ref: 'Y2K-' + Math.floor((Math.random() * 1000000000) + 1),
     callback: function(response) {
